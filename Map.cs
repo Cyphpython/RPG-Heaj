@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace RPG_Heaj
 {
@@ -10,7 +11,13 @@ namespace RPG_Heaj
     {
         Inventory inventory = new Inventory();
 
-        private Dictionary<string, int> itemsInRoom = new Dictionary<string, int>();
+        public Dictionary<string, int> itemsInRoom = new Dictionary<string, int>();
+
+        public bool mapspawn = false;
+        public bool salle1 = false;
+        public bool salle1gauche = false;
+        public bool salle1droite = false;
+        public bool salle2 = false;
         public void mapSpawn()
         {
             Console.WriteLine("Vous etes dans la zone de Spawn");
@@ -45,7 +52,7 @@ namespace RPG_Heaj
         public void Salle1Gauche()
         {
             Console.WriteLine("Vous arrivez dans une salle contenant des tentes et un feu de camp ");
-            Console.WriteLine("vos directions possible sont : Est, Nord");
+            Console.WriteLine("vos directions possible sont : West");
             Console.WriteLine("Vous y trouvez : ");
 
             itemsInRoom = new Dictionary<string, int>();
@@ -59,16 +66,31 @@ namespace RPG_Heaj
         }
         public void Salle1Droite()
         {
+            Console.WriteLine("Vous arrivez dans une salle avec ce qui semble etre les restes d'un magicien ");
+            Console.WriteLine("vos directions possible sont : est");
+            Console.WriteLine("Vous y trouvez : ");
 
+            itemsInRoom = new Dictionary<string, int>();
+
+            itemsInRoom["Staff"] = 1;
+            itemsInRoom["FireSpell"] = 1;
+
+            foreach (var item in itemsInRoom)
+            {
+                Console.WriteLine(item.Value + " " + item.Key);
+            }
         }
         public void Salle2()
         {
+            Console.WriteLine("Vous arrivez dans une immense grotte ou repose un dragon");
+            Thread.Sleep(1000);
+            Console.WriteLine("Vos bruit de pas reveille la creature");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Le combat de boss commence !!!");
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
-
-
-
-
 
         //Fonction pour l'inventaire
 
